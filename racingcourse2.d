@@ -1,0 +1,9 @@
+.\racingcourse2.o: RacingCourse2.c
+.\racingcourse2.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\racingcourse2.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\racingcourse2.o: Graphics.h
+.\racingcourse2.o: tm4c123gh6pm.h
+.\racingcourse2.o: IO.h
+.\racingcourse2.o: Print.h
+.\racingcourse2.o: Graphics.h
+.\racingcourse2.o: Sprites2.h

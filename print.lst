@@ -1,0 +1,697 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; Print.s
+    2 00000000         ; Student names: Kenneth Lin, Kunpeng Qin
+    3 00000000         ; Last modification date: Mar. 2017
+    4 00000000         ; Runs on LM4F120 or TM4C123
+    5 00000000         ; EE319K lab 7 device driver for any LCD
+    6 00000000         ;
+    7 00000000         ; As part of Lab 7, students need to implement these LCD
+                       _OutDec and LCD_OutFix
+    8 00000000         ; This driver assumes two low-level LCD functions
+    9 00000000         ; ST7735_OutChar   outputs a single 8-bit ASCII characte
+                       r
+   10 00000000         ; ST7735_OutString outputs a null-terminated string 
+   11 00000000         
+   12 00000000                 IMPORT           ST7735_OutChar
+   13 00000000                 IMPORT           ST7735_OutString
+   14 00000000                 EXPORT           LCD_OutDec
+   15 00000000                 EXPORT           LCD_OutFix
+   16 00000000                 EXPORT           Mod10
+   17 00000000         
+   18 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+   19 00000000                 THUMB
+   20 00000000         
+   21 00000000         ;-----------------------LCD_OutDec----------------------
+                       -
+   22 00000000         ; Output a 32-bit number in unsigned decimal format
+   23 00000000         ; Input: R0 (call by value) 32-bit unsigned number
+   24 00000000         ; Output: none
+   25 00000000         ; Invariables: This function must not permanently modify
+                        registers R4 to R11
+   26 00000000         ; Algorithm: 
+   27 00000000         ; static void OutDec(int number) {
+   28 00000000         ;   Stack s = new Stack(); 
+   29 00000000         ;   int p = 0; 
+   30 00000000         ;   int places = 0; 
+   31 00000000         ;   while (number > 0) {
+   32 00000000         ;     p = number % 10; 
+   33 00000000         ;     s.push(p); 
+   34 00000000         ;     number /= 10; 
+   35 00000000         ;     places++; 
+   36 00000000         ;   }
+   37 00000000         ;   for (int i = 0; i < places; i++) {
+   38 00000000         ;     System.out.print(s.pop());
+   39 00000000         ;   }
+   40 00000000         ; }
+   41 00000000 00000000 
+                       p       EQU              0           ; Bindings for vari
+                                                            ables. 
+   42 00000000 00000004 
+                       places  EQU              4           ; Bindings for vari
+                                                            ables. 
+   43 00000000 00000008 
+                       number  EQU              8           ; Bindings for vari
+                                                            ables. 
+   44 00000000 0000000C 
+                       i       EQU              12          ; Bindings for vari
+                                                            ables. 
+   45 00000000         LCD_OutDec
+   46 00000000 E92D 4800       PUSH             {R11, LR}   ; R11 will be the s
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            tack frame pointer.
+                                                             
+   47 00000004 2800            CMP              R0, #0      ; Handle the zero c
+                                                            ase. 
+   48 00000006 D039            BEQ              zOd         ; Handle the zero c
+                                                            ase. 
+   49 00000008 B084            SUB              SP, #16     ; Four local variab
+                                                            les will be allocat
+                                                            ed via the stack. 
+   50 0000000A 46EB            MOV              R11, SP     ; R11 is now the st
+                                                            ack frame register.
+                                                             
+   51 0000000C F8CB 0008       STR              R0, [R11, #number] ; Variable n
+                                                            umber = input argum
+                                                            ent. 
+   52 00000010 F04F 0000       MOV              R0, #0      ; Clear R0. 
+   53 00000014 F8CB 0000       STR              R0, [R11, #p] ; Initialize vari
+                                                            ables. 
+   54 00000018 F8CB 0004       STR              R0, [R11, #places] ; Initialize
+                                                             variables. 
+   55 0000001C F8CB 000C       STR              R0, [R11, #i] ; Initialize vari
+                                                            ables. 
+   56 00000020 F8DB 0008 
+                       wLp     LDR              R0, [R11, #number] 
+                                                            ; While number > 0
+   57 00000024 F04F 0100       MOV              R1, #0      ; While number > 0
+   58 00000028 4288            CMP              R0, R1      ; While number > 0
+   59 0000002A D911            BLS              wLCont      ; If Number <= 0, t
+                                                            hen continue. 
+   60 0000002C F7FF FFFE       BL               Mod10       ; p = number % 10 
+   61 00000030 B409            PUSH             {R0,R3}     ; s.push(p); 
+   62 00000032 F8DB 0008       LDR              R0, [R11, #number] 
+                                                            ; number /= 10; 
+   63 00000036 F04F 010A       MOV              R1, #10     ; number /= 10; 
+   64 0000003A FBB0 F0F1       UDIV             R0, R1      ; number /= 10; 
+   65 0000003E F8CB 0008       STR              R0, [R11, #number] 
+                                                            ; number /= 10; 
+   66 00000042 F8DB 0004       LDR              R0, [R11, #places] ; places++; 
+                                                            
+   67 00000046 F100 0001       ADD              R0, #1      ; places++; 
+   68 0000004A F8CB 0004       STR              R0, [R11, #places] ; places++; 
+                                                            
+   69 0000004E E7E7            B                wLp         ; While loop branch
+                                                             back. 
+   70 00000050 BF00    wLCont  NOP                          ; Continue. 
+   71 00000052 F8DB 000C 
+                       forlp   LDR              R0, [R11, #i] ; for (int i = 0;
+                                                             i < places; i++)
+   72 00000056 F8DB 1004       LDR              R1, [R11, #places] ; for (int i
+                                                             = 0; i < places; i
+                                                            ++)
+   73 0000005A 4288            CMP              R0, R1      ; for (int i = 0; i
+                                                             < places; i++)
+   74 0000005C D20B            BHS              dn          ; for (int i = 0; i
+                                                             < places; i++)
+   75 0000005E BC09            POP              {R0, R3}    ; Print character (
+                                                            add 30 b/c ASCII) 
+   76 00000060 F100 0030       ADD              R0, #0x30   ; Print character (
+                                                            add 30 b/c ASCII) 
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   77 00000064 F7FF FFFE       BL               ST7735_OutChar ; Print characte
+                                                            r (add 30 b/c ASCII
+                                                            ) 
+   78 00000068 F8DB 000C       LDR              R0, [R11, #i] ; for (int i = 0;
+                                                             i < places; i++)
+   79 0000006C F100 0001       ADD              R0, #1      ; for (int i = 0; i
+                                                             < places; i++)
+   80 00000070 F8CB 000C       STR              R0, [R11, #i] ; for (int i = 0;
+                                                             i < places; i++)
+   81 00000074 E7ED            B                forlp       ; for (int i = 0; i
+                                                             < places; i++)
+   82 00000076 B004    dn      ADD              SP, #16     ; Deallocate variab
+                                                            les. 
+   83 00000078 E8BD 8800       POP              {R11, PC}   ; Restore R11 and r
+                                                            eturn. 
+   84 0000007C F04F 0030 
+                       zOd     MOV              R0, #0x30   ; Handle the zero c
+                                                            ase. 
+   85 00000080 F7FF FFFE       BL               ST7735_OutChar ; Handle the zer
+                                                            o case. 
+   86 00000084 E8BD 8800       POP              {R11, PC}   ; Handle the zero c
+                                                            ase. 
+   87 00000088         
+   88 00000088         ; -----------------------LCD _OutFix--------------------
+                       --
+   89 00000088         ; Output characters to LCD display in fixed-point format
+                       
+   90 00000088         ; unsigned decimal, resolution 0.001, range 0.000 to 9.9
+                       99
+   91 00000088         ; Inputs:  R0 is an unsigned 32-bit number
+   92 00000088         ; Outputs: none
+   93 00000088         ; E.g., R0=0,    then output "0.000 "
+   94 00000088         ;       R0=3,    then output "0.003 "
+   95 00000088         ;       R0=89,   then output "0.089 "
+   96 00000088         ;       R0=123,  then output "0.123 "
+   97 00000088         ;       R0=9999, then output "9.999 "
+   98 00000088         ;       R0>9999, then output "*.*** "
+   99 00000088         ; Invariables: This function must not permanently modify
+                        registers R4 to R11
+  100 00000088         ; Algorithm:
+  101 00000088         ; static void OutFix(int number) {
+  102 00000088         ;   if (number > 9999) {print("*.***"); return; }
+  103 00000088         ;   Stack s = new Stack();
+  104 00000088         ;   int p = 0;
+  105 00000088         ;   int places = 4;
+  106 00000088         ;   // Get the numbers. 
+  107 00000088         ;   for (int i = 0; i < places; i++); 
+  108 00000088         ;     p = number % 10;
+  109 00000088         ;     s.push(p);
+  110 00000088         ;     number /= 10;
+  111 00000088         ;   }
+  112 00000088         ;   for (int i = 0; i < places + 1; i++) {
+  113 00000088         ;     if (i != 1)
+  114 00000088         ;       System.out.print(s.pop());
+  115 00000088         ;     else
+  116 00000088         ;       System.out.print("."); 
+  117 00000088         ;   }
+  118 00000088         ; }
+  119 00000088 00000000 
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+                       f       EQU              0           ; Bindings for vari
+                                                            ables.
+  120 00000088 00000004 
+                       places2 EQU              4           ; Bindings for vari
+                                                            ables.
+  121 00000088 00000008 
+                       number2 EQU              8           ; Bindings for vari
+                                                            ables.
+  122 00000088 0000000C 
+                       i2      EQU              12          ; Bindings for vari
+                                                            ables.
+  123 00000088 0000270F 
+                       maxN    EQU              9999        ; Max number. 
+  124 00000088         LCD_OutFix
+  125 00000088 E92D 4800       PUSH             {R11, LR}   ; R11 will be the s
+                                                            tack frame pointer.
+                                                            
+  126 0000008C F242 710F       LDR              R1, =maxN   ; Test max. 
+  127 00000090 4288            CMP              R0, R1      ; Test for special 
+                                                            case. 
+  128 00000092 D855            BHI              SpeCs       ; If it is greater 
+                                                            than 9999, then out
+                                                            put special case. 
+  129 00000094 B084            SUB              SP, #16     ; Four local variab
+                                                            les will be allocat
+                                                            ed via the stack.
+  130 00000096 46EB            MOV              R11, SP     ; R11 is now the st
+                                                            ack frame register.
+                                                            
+  131 00000098 F8CB 0008       STR              R0, [R11, #number2] ; Variable 
+                                                            number = input argu
+                                                            ment.
+  132 0000009C F04F 0000       MOV              R0, #0      ; Clear R0.
+  133 000000A0 F8CB 0000       STR              R0, [R11, #f] ; Initialize vari
+                                                            ables.
+  134 000000A4 F8CB 0004       STR              R0, [R11, #places2] ; Initializ
+                                                            e variables.
+  135 000000A8 F04F 0004       MOV              R0, #4      ; Places is initial
+                                                            ized to be 4. 
+  136 000000AC F8CB 0004       STR              R0, [R11, #places2] ; Places is
+                                                             initialized to be 
+                                                            4. 
+  137 000000B0 F04F 0000       MOV              R0, #0      ; For loop Initiali
+                                                            ze variables. 
+  138 000000B4 F8CB 000C       STR              R0, [R11, #i2] ; For loop Initi
+                                                            alize variables.
+  139 000000B8 F8DB 000C 
+                       forlp2  LDR              R0, [R11, #i2] ; for (int i = 0
+                                                            ; i < places; i++)
+  140 000000BC F8DB 1004       LDR              R1, [R11, #places2] ; for (int 
+                                                            i = 0; i < places; 
+                                                            i++)
+  141 000000C0 4288            CMP              R0, R1      ; for (int i = 0; i
+                                                             < places; i++)
+  142 000000C2 D213            BHS              dn2         ; for (int i = 0; i
+                                                             < places; i++)
+  143 000000C4 F8DB 0008       LDR              R0, [R11, #number2] 
+                                                            ; Set R0 = number. 
+                                                            
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+  144 000000C8 F7FF FFFE       BL               Mod10       ; p = number % 10
+  145 000000CC B409            PUSH             {R0,R3}     ; s.push(p);
+  146 000000CE F8DB 0008       LDR              R0, [R11, #number2] 
+                                                            ; number /= 10;
+  147 000000D2 F04F 010A       MOV              R1, #10     ; number /= 10;
+  148 000000D6 FBB0 F0F1       UDIV             R0, R1      ; number /= 10;
+  149 000000DA F8CB 0008       STR              R0, [R11, #number2] 
+                                                            ; number /= 10;
+  150 000000DE F8DB 000C       LDR              R0, [R11, #i2] ; for (int i = 0
+                                                            ; i < places; i++)
+  151 000000E2 F100 0001       ADD              R0, #1      ; for (int i = 0; i
+                                                             < places; i++)
+  152 000000E6 F8CB 000C       STR              R0, [R11, #i2] ; for (int i = 0
+                                                            ; i < places; i++)
+  153 000000EA E7E5            B                forlp2      ; for (int i = 0; i
+                                                             < places; i++)
+  154 000000EC BF00    dn2     NOP                          ; Continue from for
+                                                             loop. 
+  155 000000EE F04F 0000       MOV              R0, #0      ; For loop Initiali
+                                                            ze variables. 
+  156 000000F2 F8CB 000C       STR              R0, [R11, #i2] ; For loop Initi
+                                                            alize variables.
+  157 000000F6 F8DB 000C 
+                       forlp3  LDR              R0, [R11, #i2] ; for (int i = 0
+                                                            ; i < places + 1; i
+                                                            ++)
+  158 000000FA F8DB 1004       LDR              R1, [R11, #places2] ; for (int 
+                                                            i = 0; i < places +
+                                                             1; i++)
+  159 000000FE F101 0101       ADD              R1, #1      ; This is the place
+                                                            s + 1 part of the f
+                                                            or loop. 
+  160 00000102 4288            CMP              R0, R1      ; for (int i = 0; i
+                                                             < places + 1; i++)
+                                                            
+  161 00000104 D218            BHS              dn3         ; for (int i = 0; i
+                                                             < places + 1; i++)
+                                                            
+  162 00000106 F8DB 000C       LDR              R0, [R11, #i2] ; if (i != 1) 
+  163 0000010A F04F 0101       MOV              R1, #1      ; if (i != 1)
+  164 0000010E 4288            CMP              R0, R1      ; if (i != 1)
+  165 00000110 D104            BNE              pntN        ; if (i == 1) then 
+                                                            print ".". 
+  166 00000112 F04F 002E       MOV              R0, #"."    ; if (i == 1) then 
+                                                            print ".". 
+  167 00000116 F7FF FFFE       BL               ST7735_OutChar ; if (i == 1) th
+                                                            en print ".". 
+  168 0000011A E005            B                conti       ; Continue from if.
+                                                             
+  169 0000011C BF00    pntN    NOP                          ; Print character i
+                                                            f i != 1. 
+  170 0000011E BC09            POP              {R0, R3}    ; Print character (
+                                                            add 30 b/c ASCII)
+  171 00000120 F100 0030       ADD              R0, #0x30   ; Print character (
+                                                            add 30 b/c ASCII)
+  172 00000124 F7FF FFFE       BL               ST7735_OutChar ; Print characte
+                                                            r (add 30 b/c ASCII
+                                                            ) 
+  173 00000128 BF00    conti   NOP                          ; Continue from if.
+
+
+
+ARM Macro Assembler    Page 6 
+
+
+                                                             
+  174 0000012A F8DB 000C       LDR              R0, [R11, #i2] ; for (int i = 0
+                                                            ; i < places + 1; i
+                                                            ++)
+  175 0000012E F100 0001       ADD              R0, #1      ; for (int i = 0; i
+                                                             < places + 1; i++)
+                                                            
+  176 00000132 F8CB 000C       STR              R0, [R11, #i2] ; for (int i = 0
+                                                            ; i < places + 1; i
+                                                            ++)
+  177 00000136 E7DE            B                forlp3      ; for (int i = 0; i
+                                                             < places + 1; i++)
+                                                            
+  178 00000138 BF00    dn3     NOP                          ; Continue from for
+                                                             loop. 
+  179 0000013A B004            ADD              SP, #16     ; Deallocate variab
+                                                            les. 
+  180 0000013C E8BD 8800       POP              {R11, PC}   ; Restore R11 and r
+                                                            eturn. 
+  181 00000140 F04F 002A 
+                       SpeCs   MOV              R0, #"*"    ; Output special ca
+                                                            se. 
+  182 00000144 F7FF FFFE       BL               ST7735_OutChar ; Output special
+                                                             case. 
+  183 00000148 F04F 002E       MOV              R0, #"."    ; Output special ca
+                                                            se. 
+  184 0000014C F7FF FFFE       BL               ST7735_OutChar ; Output special
+                                                             case. 
+  185 00000150 F04F 002A       MOV              R0, #"*"    ; Output special ca
+                                                            se. 
+  186 00000154 F7FF FFFE       BL               ST7735_OutChar ; Output special
+                                                             case. 
+  187 00000158 F04F 002A       MOV              R0, #"*"    ; Output special ca
+                                                            se. 
+  188 0000015C F7FF FFFE       BL               ST7735_OutChar ; Output special
+                                                             case. 
+  189 00000160 F04F 002A       MOV              R0, #"*"    ; Output special ca
+                                                            se. 
+  190 00000164 F7FF FFFE       BL               ST7735_OutChar ; Output special
+                                                             case. 
+  191 00000168 E8BD 8800       POP              {R11, PC}   ; Restore R11 and r
+                                                            eturn. 
+  192 0000016C         
+  193 0000016C                 ALIGN
+  194 0000016C         
+  195 0000016C         ; -----------------------Mod10----------------------    
+                        
+  196 0000016C         ; Returns in R0 the modulo of 10. 
+  197 0000016C         Mod10
+  198 0000016C B50E            PUSH             {R1, R2, R3, LR}
+  199 0000016E F04F 010A       MOV              R1, #10
+  200 00000172 FBB0 F2F1       UDIV             R2, R0, R1
+  201 00000176 FB02 F201       MUL              R2, R1
+  202 0000017A EBA0 0002       SUB              R0, R2
+  203 0000017E BD0E    cot     POP              {R1, R2, R3, PC}
+  204 00000180         
+  205 00000180                 ALIGN                        ; make sure the end
+                                                             of this section is
+                                                             aligned
+
+
+
+ARM Macro Assembler    Page 7 
+
+
+  206 00000180                 END                          ; end of file
+Command Line: --debug --xref --cpu=Cortex-M4 --apcs=interwork --depend=.\print.
+d -o.\print.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\
+Inc\Luminary --predefine="__MICROLIB SETA 1" --list=.\print.lst Print.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 18 in file Print.s
+   Uses
+      None
+Comment: .text unused
+LCD_OutDec 00000000
+
+Symbol: LCD_OutDec
+   Definitions
+      At line 45 in file Print.s
+   Uses
+      At line 14 in file Print.s
+Comment: LCD_OutDec used once
+LCD_OutFix 00000088
+
+Symbol: LCD_OutFix
+   Definitions
+      At line 124 in file Print.s
+   Uses
+      At line 15 in file Print.s
+Comment: LCD_OutFix used once
+Mod10 0000016C
+
+Symbol: Mod10
+   Definitions
+      At line 197 in file Print.s
+   Uses
+      At line 16 in file Print.s
+      At line 60 in file Print.s
+      At line 144 in file Print.s
+
+SpeCs 00000140
+
+Symbol: SpeCs
+   Definitions
+      At line 181 in file Print.s
+   Uses
+      At line 128 in file Print.s
+Comment: SpeCs used once
+conti 00000128
+
+Symbol: conti
+   Definitions
+      At line 173 in file Print.s
+   Uses
+      At line 168 in file Print.s
+Comment: conti used once
+cot 0000017E
+
+Symbol: cot
+   Definitions
+      At line 203 in file Print.s
+   Uses
+      None
+Comment: cot unused
+dn 00000076
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+
+Symbol: dn
+   Definitions
+      At line 82 in file Print.s
+   Uses
+      At line 74 in file Print.s
+Comment: dn used once
+dn2 000000EC
+
+Symbol: dn2
+   Definitions
+      At line 154 in file Print.s
+   Uses
+      At line 142 in file Print.s
+Comment: dn2 used once
+dn3 00000138
+
+Symbol: dn3
+   Definitions
+      At line 178 in file Print.s
+   Uses
+      At line 161 in file Print.s
+Comment: dn3 used once
+forlp 00000052
+
+Symbol: forlp
+   Definitions
+      At line 71 in file Print.s
+   Uses
+      At line 81 in file Print.s
+Comment: forlp used once
+forlp2 000000B8
+
+Symbol: forlp2
+   Definitions
+      At line 139 in file Print.s
+   Uses
+      At line 153 in file Print.s
+Comment: forlp2 used once
+forlp3 000000F6
+
+Symbol: forlp3
+   Definitions
+      At line 157 in file Print.s
+   Uses
+      At line 177 in file Print.s
+Comment: forlp3 used once
+pntN 0000011C
+
+Symbol: pntN
+   Definitions
+      At line 169 in file Print.s
+   Uses
+      At line 165 in file Print.s
+Comment: pntN used once
+wLCont 00000050
+
+Symbol: wLCont
+   Definitions
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 70 in file Print.s
+   Uses
+      At line 59 in file Print.s
+Comment: wLCont used once
+wLp 00000020
+
+Symbol: wLp
+   Definitions
+      At line 56 in file Print.s
+   Uses
+      At line 69 in file Print.s
+Comment: wLp used once
+zOd 0000007C
+
+Symbol: zOd
+   Definitions
+      At line 84 in file Print.s
+   Uses
+      At line 48 in file Print.s
+Comment: zOd used once
+17 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+f 00000000
+
+Symbol: f
+   Definitions
+      At line 119 in file Print.s
+   Uses
+      At line 133 in file Print.s
+Comment: f used once
+i 0000000C
+
+Symbol: i
+   Definitions
+      At line 44 in file Print.s
+   Uses
+      At line 55 in file Print.s
+      At line 71 in file Print.s
+      At line 78 in file Print.s
+      At line 80 in file Print.s
+
+i2 0000000C
+
+Symbol: i2
+   Definitions
+      At line 122 in file Print.s
+   Uses
+      At line 138 in file Print.s
+      At line 139 in file Print.s
+      At line 150 in file Print.s
+      At line 152 in file Print.s
+      At line 156 in file Print.s
+      At line 157 in file Print.s
+      At line 162 in file Print.s
+      At line 174 in file Print.s
+      At line 176 in file Print.s
+
+maxN 0000270F
+
+Symbol: maxN
+   Definitions
+      At line 123 in file Print.s
+   Uses
+      At line 126 in file Print.s
+Comment: maxN used once
+number 00000008
+
+Symbol: number
+   Definitions
+      At line 43 in file Print.s
+   Uses
+      At line 51 in file Print.s
+      At line 56 in file Print.s
+      At line 62 in file Print.s
+      At line 65 in file Print.s
+
+number2 00000008
+
+Symbol: number2
+   Definitions
+      At line 121 in file Print.s
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
+   Uses
+      At line 131 in file Print.s
+      At line 143 in file Print.s
+      At line 146 in file Print.s
+      At line 149 in file Print.s
+
+p 00000000
+
+Symbol: p
+   Definitions
+      At line 41 in file Print.s
+   Uses
+      At line 53 in file Print.s
+Comment: p used once
+places 00000004
+
+Symbol: places
+   Definitions
+      At line 42 in file Print.s
+   Uses
+      At line 54 in file Print.s
+      At line 66 in file Print.s
+      At line 68 in file Print.s
+      At line 72 in file Print.s
+
+places2 00000004
+
+Symbol: places2
+   Definitions
+      At line 120 in file Print.s
+   Uses
+      At line 134 in file Print.s
+      At line 136 in file Print.s
+      At line 140 in file Print.s
+      At line 158 in file Print.s
+
+9 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+ST7735_OutChar 00000000
+
+Symbol: ST7735_OutChar
+   Definitions
+      At line 12 in file Print.s
+   Uses
+      At line 77 in file Print.s
+      At line 85 in file Print.s
+      At line 167 in file Print.s
+      At line 172 in file Print.s
+      At line 182 in file Print.s
+      At line 184 in file Print.s
+      At line 186 in file Print.s
+      At line 188 in file Print.s
+      At line 190 in file Print.s
+
+ST7735_OutString 00000000
+
+Symbol: ST7735_OutString
+   Definitions
+      At line 13 in file Print.s
+   Uses
+      None
+Comment: ST7735_OutString unused
+2 symbols
+359 symbols in table

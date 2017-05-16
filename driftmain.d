@@ -1,0 +1,10 @@
+.\driftmain.o: DriftMain.c
+.\driftmain.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\driftmain.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\driftmain.o: ST7735.h
+.\driftmain.o: tm4c123gh6pm.h
+.\driftmain.o: TExaS.h
+.\driftmain.o: IO.h
+.\driftmain.o: Print.h
+.\driftmain.o: Graphics.h
+.\driftmain.o: UART.h

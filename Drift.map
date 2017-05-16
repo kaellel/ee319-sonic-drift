@@ -1,0 +1,959 @@
+ARM Linker, 5.03 [Build 76] [MDK-ARM Professional]
+
+==============================================================================
+
+Section Cross References
+
+    startup.o(RESET) refers to startup.o(STACK) for StackMem
+    startup.o(RESET) refers to uart.o(i.UART1_Handler) for UART1_Handler
+    startup.o(RESET) refers to timer0a.o(i.Timer0A_Handler) for Timer0A_Handler
+    startup.o(RESET) refers to texas.o(.text) for Timer4A_Handler
+    startup.o(RESET) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    st7735.o(i.Output_Clear) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.Output_Clear) refers to st7735.o(.data) for .data
+    st7735.o(i.Output_Color) refers to st7735.o(.data) for .data
+    st7735.o(i.Output_Init) refers to st7735.o(i.commonInit) for commonInit
+    st7735.o(i.Output_Init) refers to st7735.o(i.commandList) for commandList
+    st7735.o(i.Output_Init) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.Output_Init) refers to st7735.o(.constdata) for .constdata
+    st7735.o(i.Output_Init) refers to st7735.o(.data) for .data
+    st7735.o(i.Output_Off) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.Output_Off) refers to st7735.o(.data) for .data
+    st7735.o(i.Output_On) refers to st7735.o(i.commonInit) for commonInit
+    st7735.o(i.Output_On) refers to st7735.o(i.commandList) for commandList
+    st7735.o(i.Output_On) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.Output_On) refers to st7735.o(.constdata) for .constdata
+    st7735.o(i.Output_On) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_DrawBitmap) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_DrawBitmap) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_DrawBitmap) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_DrawChar) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_DrawChar) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_DrawChar) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_DrawChar) refers to st7735.o(.constdata) for .constdata
+    st7735.o(i.ST7735_DrawCharS) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.ST7735_DrawCharS) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_DrawCharS) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_DrawCharS) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_DrawCharS) refers to st7735.o(.constdata) for .constdata
+    st7735.o(i.ST7735_DrawFastHLine) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_DrawFastHLine) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_DrawFastHLine) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_DrawFastVLine) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_DrawFastVLine) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_DrawFastVLine) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_DrawPixel) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_DrawPixel) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_DrawPixel2) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_DrawString) refers to st7735.o(i.ST7735_DrawCharS) for ST7735_DrawCharS
+    st7735.o(i.ST7735_FillRect) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_FillRect) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_FillRect) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_FillScreen) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.ST7735_FillScreen) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_InitB) refers to st7735.o(i.commonInit) for commonInit
+    st7735.o(i.ST7735_InitB) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.ST7735_InitB) refers to st7735.o(.constdata) for .constdata
+    st7735.o(i.ST7735_InitB) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_InitR) refers to st7735.o(i.commonInit) for commonInit
+    st7735.o(i.ST7735_InitR) refers to st7735.o(i.commandList) for commandList
+    st7735.o(i.ST7735_InitR) refers to lcd.o(.text) for writecommand
+    st7735.o(i.ST7735_InitR) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.ST7735_InitR) refers to st7735.o(.constdata) for .constdata
+    st7735.o(i.ST7735_InitR) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_InvertDisplay) refers to lcd.o(.text) for writecommand
+    st7735.o(i.ST7735_OutChar) refers to st7735.o(i.ST7735_DrawCharS) for ST7735_DrawCharS
+    st7735.o(i.ST7735_OutChar) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_OutString) refers to st7735.o(i.ST7735_OutChar) for ST7735_OutChar
+    st7735.o(i.ST7735_OutUDec) refers to st7735.o(i.fillmessage) for fillmessage
+    st7735.o(i.ST7735_OutUDec) refers to st7735.o(i.ST7735_DrawCharS) for ST7735_DrawCharS
+    st7735.o(i.ST7735_OutUDec) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_OutUDec) refers to st7735.o(.bss) for .bss
+    st7735.o(i.ST7735_PlotBar) refers to st7735.o(i.ST7735_DrawFastVLine) for ST7735_DrawFastVLine
+    st7735.o(i.ST7735_PlotBar) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_PlotClear) refers to st7735.o(i.ST7735_FillRect) for ST7735_FillRect
+    st7735.o(i.ST7735_PlotClear) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_PlotLine) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_PlotLine) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_PlotLine) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_PlotNext) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_PlotNextErase) refers to st7735.o(i.ST7735_DrawFastVLine) for ST7735_DrawFastVLine
+    st7735.o(i.ST7735_PlotNextErase) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_PlotPoint) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_PlotPoint) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_PlotPoint) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_PlotPoints) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_PlotPoints) refers to lcd.o(.text) for writedata
+    st7735.o(i.ST7735_PlotPoints) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_PlotdBfs) refers to st7735.o(i.ST7735_DrawFastVLine) for ST7735_DrawFastVLine
+    st7735.o(i.ST7735_PlotdBfs) refers to st7735.o(.constdata) for .constdata
+    st7735.o(i.ST7735_PlotdBfs) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_SetCursor) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_SetRotation) refers to lcd.o(.text) for writecommand
+    st7735.o(i.ST7735_SetRotation) refers to st7735.o(.data) for .data
+    st7735.o(i.ST7735_SetScreen) refers to st7735.o(i.setAddrWindow) for setAddrWindow
+    st7735.o(i.ST7735_SetTextColor) refers to st7735.o(.data) for .data
+    st7735.o(i.commandList) refers to lcd.o(.text) for writecommand
+    st7735.o(i.commonInit) refers to st7735.o(i.Delay1ms) for Delay1ms
+    st7735.o(i.commonInit) refers to st7735.o(i.commandList) for commandList
+    st7735.o(i.commonInit) refers to st7735.o(.data) for .data
+    st7735.o(i.fillmessage) refers to st7735.o(.bss) for .bss
+    st7735.o(i.fillmessage) refers to st7735.o(.data) for .data
+    st7735.o(i.fputc) refers to st7735.o(i.ST7735_OutChar) for ST7735_OutChar
+    st7735.o(i.setAddrWindow) refers to lcd.o(.text) for writecommand
+    st7735.o(i.setAddrWindow) refers to st7735.o(.data) for .data
+    print.o(.text) refers to st7735.o(i.ST7735_OutChar) for ST7735_OutChar
+    racingcourse1.o(i.drawCourse1) refers to io.o(i.IO_HeartBeat) for IO_HeartBeat
+    racingcourse1.o(i.drawCourse1) refers to graphics.o(i.Graphics_FillRect) for Graphics_FillRect
+    racingcourse1.o(i.drawCourse1) refers to graphics.o(i.Graphics_DrawBitmap) for Graphics_DrawBitmap
+    racingcourse1.o(i.drawCourse1) refers to driftmain.o(i.ChangeState) for ChangeState
+    racingcourse1.o(i.drawCourse1) refers to driftmain.o(i.SendSound) for SendSound
+    racingcourse1.o(i.drawCourse1) refers to graphics.o(i.Graphics_DrawPixel) for Graphics_DrawPixel
+    racingcourse1.o(i.drawCourse1) refers to racingcourse1.o(.data) for .data
+    racingcourse1.o(i.drawCourse1) refers to racingcourse1.o(.constdata) for .constdata
+    racingcourse1.o(i.initCourse1) refers to racingcourse1.o(.data) for .data
+    racingcourse1.o(i.updateCourse1) refers to adc.o(i.ADC_In) for ADC_In
+    racingcourse1.o(i.updateCourse1) refers to io.o(i.IO_GetButton2) for IO_GetButton2
+    racingcourse1.o(i.updateCourse1) refers to driftmain.o(i.ChangeState) for ChangeState
+    racingcourse1.o(i.updateCourse1) refers to io.o(i.IO_GetButton1) for IO_GetButton1
+    racingcourse1.o(i.updateCourse1) refers to racingcourse1.o(.data) for .data
+    timer0a.o(i.Timer0A_Disable) refers to startup.o(.text) for StartCritical
+    timer0a.o(i.Timer0A_Handler) refers to timer0a.o(.data) for .data
+    timer0a.o(i.Timer0A_Init) refers to startup.o(.text) for StartCritical
+    timer0a.o(i.Timer0A_Init) refers to timer0a.o(.data) for .data
+    driftmain.o(i.ChangeState) refers to menu1.o(i.menu1Init) for menu1Init
+    driftmain.o(i.ChangeState) refers to menu2.o(i.menu2Init) for menu2Init
+    driftmain.o(i.ChangeState) refers to racingcourse1.o(i.initCourse1) for initCourse1
+    driftmain.o(i.ChangeState) refers to racingcourse2.o(i.initCourse2) for initCourse2
+    driftmain.o(i.ChangeState) refers to driftmain.o(.data) for .data
+    driftmain.o(i.SendSound) refers to uart.o(i.UART1_OutChar) for UART1_OutChar
+    driftmain.o(i.UpdateGame) refers to graphics.o(i.Graphics_Init) for Graphics_Init
+    driftmain.o(i.UpdateGame) refers to menu1.o(i.menu1Update) for menu1Update
+    driftmain.o(i.UpdateGame) refers to menu1.o(i.menu1Draw) for menu1Draw
+    driftmain.o(i.UpdateGame) refers to graphics.o(i.Graphics_OutScreen) for Graphics_OutScreen
+    driftmain.o(i.UpdateGame) refers to menu2.o(i.menu2Update) for menu2Update
+    driftmain.o(i.UpdateGame) refers to menu2.o(i.menu2Draw) for menu2Draw
+    driftmain.o(i.UpdateGame) refers to st7735.o(i.ST7735_SetCursor) for ST7735_SetCursor
+    driftmain.o(i.UpdateGame) refers to st7735.o(i.ST7735_FillScreen) for ST7735_FillScreen
+    driftmain.o(i.UpdateGame) refers to st7735.o(i.ST7735_OutString) for ST7735_OutString
+    driftmain.o(i.UpdateGame) refers to io.o(i.IO_Touch) for IO_Touch
+    driftmain.o(i.UpdateGame) refers to menu1.o(i.menu1Init) for menu1Init
+    driftmain.o(i.UpdateGame) refers to racingcourse1.o(i.updateCourse1) for updateCourse1
+    driftmain.o(i.UpdateGame) refers to racingcourse1.o(i.drawCourse1) for drawCourse1
+    driftmain.o(i.UpdateGame) refers to racingcourse2.o(i.updateCourse2) for updateCourse2
+    driftmain.o(i.UpdateGame) refers to racingcourse2.o(i.drawCourse2) for drawCourse2
+    driftmain.o(i.UpdateGame) refers to driftmain.o(.data) for .data
+    driftmain.o(i.main) refers to texas.o(.text) for TExaS_Init
+    driftmain.o(i.main) refers to uart.o(i.UART1_Init) for UART1_Init
+    driftmain.o(i.main) refers to io.o(i.IO_Init) for IO_Init
+    driftmain.o(i.main) refers to adc.o(i.ADC_Init) for ADC_Init
+    driftmain.o(i.main) refers to st7735.o(i.ST7735_InitR) for ST7735_InitR
+    driftmain.o(i.main) refers to st7735.o(i.ST7735_FillScreen) for ST7735_FillScreen
+    driftmain.o(i.main) refers to timer0a.o(i.Timer0A_Init) for Timer0A_Init
+    driftmain.o(i.main) refers to driftmain.o(i.UpdateGame) for UpdateGame
+    graphics.o(i.Graphics_DrawBitmap) refers to graphics.o(i.Graphics_DrawPixel) for Graphics_DrawPixel
+    graphics.o(i.Graphics_DrawPixel) refers to graphics.o(.data) for .data
+    graphics.o(i.Graphics_DrawPixel) refers to graphics.o(.bss) for .bss
+    graphics.o(i.Graphics_FillRect) refers to graphics.o(i.Graphics_DrawPixel) for Graphics_DrawPixel
+    graphics.o(i.Graphics_Init) refers to graphics.o(.data) for .data
+    graphics.o(i.Graphics_Init) refers to graphics.o(.bss) for .bss
+    graphics.o(i.Graphics_OutScreen) refers to st7735.o(i.ST7735_SetScreen) for ST7735_SetScreen
+    graphics.o(i.Graphics_OutScreen) refers to io.o(i.IO_HeartBeat2) for IO_HeartBeat2
+    graphics.o(i.Graphics_OutScreen) refers to st7735.o(i.ST7735_DrawPixel2) for ST7735_DrawPixel2
+    graphics.o(i.Graphics_OutScreen) refers to graphics.o(.data) for .data
+    graphics.o(i.Graphics_OutScreen) refers to graphics.o(.bss) for .bss
+    texas.o(.text) refers to texas.o(.bss) for TExaS
+    texas.o(.text) refers to texas.o(.constdata) for IntroMsg
+    texas.o(.text) refers to texas.o(.data) for LastMode
+    menu1.o(i.menu1Draw) refers to graphics.o(i.Graphics_DrawBitmap) for Graphics_DrawBitmap
+    menu1.o(i.menu1Draw) refers to menu1.o(.constdata) for .constdata
+    menu1.o(i.menu1Draw) refers to menu1.o(.data) for .data
+    menu1.o(i.menu1Init) refers to menu1.o(.data) for .data
+    menu1.o(i.menu1Update) refers to driftmain.o(i.SendSound) for SendSound
+    menu1.o(i.menu1Update) refers to io.o(i.IO_GetButton1) for IO_GetButton1
+    menu1.o(i.menu1Update) refers to driftmain.o(i.ChangeState) for ChangeState
+    menu1.o(i.menu1Update) refers to io.o(i.IO_GetButton2) for IO_GetButton2
+    menu1.o(i.menu1Update) refers to menu1.o(.data) for .data
+    menu2.o(i.menu2Draw) refers to graphics.o(i.Graphics_FillRect) for Graphics_FillRect
+    menu2.o(i.menu2Draw) refers to graphics.o(i.Graphics_DrawBitmap) for Graphics_DrawBitmap
+    menu2.o(i.menu2Draw) refers to graphics.o(i.Graphics_DrawPixel) for Graphics_DrawPixel
+    menu2.o(i.menu2Draw) refers to menu2.o(.constdata) for .constdata
+    menu2.o(i.menu2Draw) refers to menu2.o(.data) for .data
+    menu2.o(i.menu2Update) refers to driftmain.o(i.SendSound) for SendSound
+    menu2.o(i.menu2Update) refers to io.o(i.IO_GetButton1) for IO_GetButton1
+    menu2.o(i.menu2Update) refers to driftmain.o(i.ChangeState) for ChangeState
+    menu2.o(i.menu2Update) refers to io.o(i.IO_GetButton2) for IO_GetButton2
+    menu2.o(i.menu2Update) refers to menu2.o(.data) for .data
+    racingcourse2.o(i.drawCourse2) refers to io.o(i.IO_HeartBeat) for IO_HeartBeat
+    racingcourse2.o(i.drawCourse2) refers to graphics.o(i.Graphics_FillRect) for Graphics_FillRect
+    racingcourse2.o(i.drawCourse2) refers to graphics.o(i.Graphics_DrawBitmap) for Graphics_DrawBitmap
+    racingcourse2.o(i.drawCourse2) refers to driftmain.o(i.ChangeState) for ChangeState
+    racingcourse2.o(i.drawCourse2) refers to driftmain.o(i.SendSound) for SendSound
+    racingcourse2.o(i.drawCourse2) refers to graphics.o(i.Graphics_DrawPixel) for Graphics_DrawPixel
+    racingcourse2.o(i.drawCourse2) refers to racingcourse2.o(.data) for .data
+    racingcourse2.o(i.drawCourse2) refers to racingcourse1.o(.constdata) for scrapbrain_title
+    racingcourse2.o(i.drawCourse2) refers to racingcourse1.o(.constdata) for winner_you
+    racingcourse2.o(i.drawCourse2) refers to racingcourse1.o(.constdata) for Course2Map
+    racingcourse2.o(i.drawCourse2) refers to racingcourse1.o(.constdata) for course2parallax
+    racingcourse2.o(i.drawCourse2) refers to racingcourse1.o(.constdata) for Ground2
+    racingcourse2.o(i.initCourse2) refers to racingcourse2.o(.data) for .data
+    racingcourse2.o(i.updateCourse2) refers to adc.o(i.ADC_In) for ADC_In
+    racingcourse2.o(i.updateCourse2) refers to io.o(i.IO_GetButton2) for IO_GetButton2
+    racingcourse2.o(i.updateCourse2) refers to driftmain.o(i.ChangeState) for ChangeState
+    racingcourse2.o(i.updateCourse2) refers to io.o(i.IO_GetButton1) for IO_GetButton1
+    racingcourse2.o(i.updateCourse2) refers to racingcourse2.o(.data) for .data
+    fifo.o(i.FiFo_Get) refers to fifo.o(.data) for .data
+    fifo.o(i.FiFo_Get) refers to fifo.o(.bss) for .bss
+    fifo.o(i.FiFo_Init) refers to fifo.o(.data) for .data
+    fifo.o(i.FiFo_Put) refers to fifo.o(.data) for .data
+    fifo.o(i.FiFo_Put) refers to fifo.o(.bss) for .bss
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to driftmain.o(i.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to driftmain.o(i.main) for main
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing startup.o(HEAP), (0 bytes).
+    Removing st7735.o(i.Output_Clear), (32 bytes).
+    Removing st7735.o(i.Output_Color), (12 bytes).
+    Removing st7735.o(i.Output_Init), (92 bytes).
+    Removing st7735.o(i.Output_Off), (32 bytes).
+    Removing st7735.o(i.Output_On), (92 bytes).
+    Removing st7735.o(i.ST7735_Color565), (20 bytes).
+    Removing st7735.o(i.ST7735_DrawBitmap), (272 bytes).
+    Removing st7735.o(i.ST7735_DrawChar), (288 bytes).
+    Removing st7735.o(i.ST7735_DrawFastHLine), (100 bytes).
+    Removing st7735.o(i.ST7735_DrawFastVLine), (100 bytes).
+    Removing st7735.o(i.ST7735_DrawPixel), (32 bytes).
+    Removing st7735.o(i.ST7735_DrawString), (98 bytes).
+    Removing st7735.o(i.ST7735_InitB), (52 bytes).
+    Removing st7735.o(i.ST7735_InvertDisplay), (14 bytes).
+    Removing st7735.o(i.ST7735_OutUDec), (212 bytes).
+    Removing st7735.o(i.ST7735_PlotBar), (64 bytes).
+    Removing st7735.o(i.ST7735_PlotClear), (52 bytes).
+    Removing st7735.o(i.ST7735_PlotLine), (284 bytes).
+    Removing st7735.o(i.ST7735_PlotNext), (20 bytes).
+    Removing st7735.o(i.ST7735_PlotNextErase), (36 bytes).
+    Removing st7735.o(i.ST7735_PlotPoint), (172 bytes).
+    Removing st7735.o(i.ST7735_PlotPoints), (168 bytes).
+    Removing st7735.o(i.ST7735_PlotdBfs), (52 bytes).
+    Removing st7735.o(i.ST7735_SetRotation), (112 bytes).
+    Removing st7735.o(i.ST7735_SetTextColor), (12 bytes).
+    Removing st7735.o(i.ST7735_SwapColor), (16 bytes).
+    Removing st7735.o(i.ferror), (6 bytes).
+    Removing st7735.o(i.fgetc), (4 bytes).
+    Removing st7735.o(i.fillmessage), (68 bytes).
+    Removing st7735.o(i.fputc), (12 bytes).
+    Removing st7735.o(.bss), (12 bytes).
+    Removing print.o(.text), (384 bytes).
+    Removing racingcourse1.o(.constdata), (640 bytes).
+    Removing timer0a.o(i.Timer0A_Disable), (28 bytes).
+    Removing fifo.o(i.FiFo_Get), (48 bytes).
+    Removing fifo.o(i.FiFo_Init), (16 bytes).
+    Removing fifo.o(i.FiFo_Put), (80 bytes).
+    Removing fifo.o(.bss), (260 bytes).
+    Removing fifo.o(.data), (8 bytes).
+    Removing uart.o(i.UART1_InChar), (4 bytes).
+    Removing uart.o(.data), (4 bytes).
+    Removing uart.o(.data), (4 bytes).
+
+43 unused section(s) (total 4014 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    RESET                                    0x00000000   Section      644  startup.o(RESET)
+    ../clib/../cmprslib/lz77c.c              0x00000000   Number         0  __dclz77c.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ADC.c                                    0x00000000   Number         0  adc.o ABSOLUTE
+    DriftMain.c                              0x00000000   Number         0  driftmain.o ABSOLUTE
+    FiFo.c                                   0x00000000   Number         0  fifo.o ABSOLUTE
+    Graphics.c                               0x00000000   Number         0  graphics.o ABSOLUTE
+    IO.c                                     0x00000000   Number         0  io.o ABSOLUTE
+    LCD.s                                    0x00000000   Number         0  lcd.o ABSOLUTE
+    Menu1.c                                  0x00000000   Number         0  menu1.o ABSOLUTE
+    Menu2.c                                  0x00000000   Number         0  menu2.o ABSOLUTE
+    Print.s                                  0x00000000   Number         0  print.o ABSOLUTE
+    RacingCourse1.c                          0x00000000   Number         0  racingcourse1.o ABSOLUTE
+    RacingCourse2.c                          0x00000000   Number         0  racingcourse2.o ABSOLUTE
+    ST7735.c                                 0x00000000   Number         0  st7735.o ABSOLUTE
+    TExaS.c                                  0x00000000   Number         0  texas.o ABSOLUTE
+    TextDraw.c                               0x00000000   Number         0  textdraw.o ABSOLUTE
+    Timer0A.c                                0x00000000   Number         0  timer0a.o ABSOLUTE
+    UART.c                                   0x00000000   Number         0  uart.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
+    init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    startup.s                                0x00000000   Number         0  startup.o ABSOLUTE
+    .ARM.Collect$$$$00000000                 0x00000284   Section        0  entry.o(.ARM.Collect$$$$00000000)
+    .ARM.Collect$$$$00000001                 0x00000284   Section        4  entry2.o(.ARM.Collect$$$$00000001)
+    .ARM.Collect$$$$00000004                 0x00000288   Section        4  entry5.o(.ARM.Collect$$$$00000004)
+    .ARM.Collect$$$$00000008                 0x0000028c   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
+    .ARM.Collect$$$$0000000A                 0x0000028c   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
+    .ARM.Collect$$$$0000000B                 0x0000028c   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
+    .ARM.Collect$$$$0000000D                 0x00000294   Section        0  entry10a.o(.ARM.Collect$$$$0000000D)
+    .ARM.Collect$$$$0000000F                 0x00000294   Section        0  entry11a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00002712                 0x00000294   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    __lit__00000000                          0x00000294   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .text                                    0x00000298   Section       28  startup.o(.text)
+    .text                                    0x000002b4   Section       76  lcd.o(.text)
+    .text                                    0x00000300   Section        0  texas.o(.text)
+    .text                                    0x000007a0   Section       36  init.o(.text)
+    .text                                    0x000007c4   Section        0  __dclz77c.o(.text)
+    i.ADC_In                                 0x00000824   Section        0  adc.o(i.ADC_In)
+    i.ADC_Init                               0x00000844   Section        0  adc.o(i.ADC_Init)
+    i.ChangeState                            0x00000908   Section        0  driftmain.o(i.ChangeState)
+    i.Delay1ms                               0x00000934   Section        0  st7735.o(i.Delay1ms)
+    i.Graphics_DrawBitmap                    0x00000968   Section        0  graphics.o(i.Graphics_DrawBitmap)
+    i.Graphics_DrawPixel                     0x000009bc   Section        0  graphics.o(i.Graphics_DrawPixel)
+    i.Graphics_FillRect                      0x00000ab0   Section        0  graphics.o(i.Graphics_FillRect)
+    i.Graphics_Init                          0x00000b00   Section        0  graphics.o(i.Graphics_Init)
+    i.Graphics_OutScreen                     0x00000b24   Section        0  graphics.o(i.Graphics_OutScreen)
+    i.IO_GetButton1                          0x00000bac   Section        0  io.o(i.IO_GetButton1)
+    i.IO_GetButton2                          0x00000bbc   Section        0  io.o(i.IO_GetButton2)
+    i.IO_HeartBeat                           0x00000bcc   Section        0  io.o(i.IO_HeartBeat)
+    i.IO_HeartBeat2                          0x00000bdc   Section        0  io.o(i.IO_HeartBeat2)
+    i.IO_Init                                0x00000bec   Section        0  io.o(i.IO_Init)
+    i.IO_Touch                               0x00000c7c   Section        0  io.o(i.IO_Touch)
+    i.ST7735_DrawCharS                       0x00000c9c   Section        0  st7735.o(i.ST7735_DrawCharS)
+    i.ST7735_DrawPixel2                      0x00000dc8   Section        0  st7735.o(i.ST7735_DrawPixel2)
+    i.ST7735_FillRect                        0x00000ddc   Section        0  st7735.o(i.ST7735_FillRect)
+    i.ST7735_FillScreen                      0x00000e60   Section        0  st7735.o(i.ST7735_FillScreen)
+    i.ST7735_InitR                           0x00000e7c   Section        0  st7735.o(i.ST7735_InitR)
+    i.ST7735_OutChar                         0x00000ef8   Section        0  st7735.o(i.ST7735_OutChar)
+    i.ST7735_OutString                       0x00000ff8   Section        0  st7735.o(i.ST7735_OutString)
+    i.ST7735_SetCursor                       0x00001018   Section        0  st7735.o(i.ST7735_SetCursor)
+    i.ST7735_SetScreen                       0x0000102c   Section        0  st7735.o(i.ST7735_SetScreen)
+    i.SendSound                              0x00001038   Section        0  driftmain.o(i.SendSound)
+    i.Timer0A_Handler                        0x00001070   Section        0  timer0a.o(i.Timer0A_Handler)
+    i.Timer0A_Init                           0x00001084   Section        0  timer0a.o(i.Timer0A_Init)
+    i.UART1_Handler                          0x000010f0   Section        0  uart.o(i.UART1_Handler)
+    i.UART1_Init                             0x000010f4   Section        0  uart.o(i.UART1_Init)
+    i.UART1_OutChar                          0x00001194   Section        0  uart.o(i.UART1_OutChar)
+    i.UpdateGame                             0x00001198   Section        0  driftmain.o(i.UpdateGame)
+    i.__scatterload_copy                     0x00001284   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00001292   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00001294   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.commandList                            0x000012a4   Section        0  st7735.o(i.commandList)
+    commandList                              0x000012a5   Thumb Code   142  st7735.o(i.commandList)
+    i.commonInit                             0x00001334   Section        0  st7735.o(i.commonInit)
+    commonInit                               0x00001335   Thumb Code   300  st7735.o(i.commonInit)
+    i.drawCourse1                            0x00001488   Section        0  racingcourse1.o(i.drawCourse1)
+    i.drawCourse2                            0x00001d68   Section        0  racingcourse2.o(i.drawCourse2)
+    i.initCourse1                            0x0000263c   Section        0  racingcourse1.o(i.initCourse1)
+    i.initCourse2                            0x0000267c   Section        0  racingcourse2.o(i.initCourse2)
+    i.main                                   0x000026bc   Section        0  driftmain.o(i.main)
+    i.menu1Draw                              0x000026ec   Section        0  menu1.o(i.menu1Draw)
+    i.menu1Init                              0x00002728   Section        0  menu1.o(i.menu1Init)
+    i.menu1Update                            0x00002738   Section        0  menu1.o(i.menu1Update)
+    i.menu2Draw                              0x00002784   Section        0  menu2.o(i.menu2Draw)
+    i.menu2Init                              0x00002b5c   Section        0  menu2.o(i.menu2Init)
+    i.menu2Update                            0x00002b60   Section        0  menu2.o(i.menu2Update)
+    i.setAddrWindow                          0x00002bc0   Section        0  st7735.o(i.setAddrWindow)
+    setAddrWindow                            0x00002bc1   Thumb Code   100  st7735.o(i.setAddrWindow)
+    i.updateCourse1                          0x00002c28   Section        0  racingcourse1.o(i.updateCourse1)
+    i.updateCourse2                          0x00002eb8   Section        0  racingcourse2.o(i.updateCourse2)
+    .constdata                               0x00003190   Section     2018  st7735.o(.constdata)
+    Font                                     0x00003190   Data        1275  st7735.o(.constdata)
+    Bcmd                                     0x0000368b   Data         103  st7735.o(.constdata)
+    Rcmd1                                    0x000036f2   Data          59  st7735.o(.constdata)
+    Rcmd2green                               0x0000372d   Data          13  st7735.o(.constdata)
+    Rcmd2red                                 0x0000373a   Data          13  st7735.o(.constdata)
+    Rcmd3                                    0x00003747   Data          43  st7735.o(.constdata)
+    .constdata                               0x00003972   Section    90776  racingcourse1.o(.constdata)
+    Course1Map                               0x00003e42   Data       20480  racingcourse1.o(.constdata)
+    Course1Parallax                          0x00008e42   Data       16900  racingcourse1.o(.constdata)
+    .constdata                               0x00019c0a   Section      212  racingcourse1.o(.constdata)
+    .constdata                               0x00019cde   Section    20480  racingcourse1.o(.constdata)
+    .constdata                               0x0001ecde   Section    16000  racingcourse1.o(.constdata)
+    .constdata                               0x00022b5e   Section    16900  racingcourse1.o(.constdata)
+    .constdata                               0x00026d62   Section      240  texas.o(.constdata)
+    .constdata                               0x00026e52   Section    50944  menu1.o(.constdata)
+    .constdata                               0x00033552   Section    19072  menu2.o(.constdata)
+    .data                                    0x20000000   Section       44  st7735.o(.data)
+    ColStart                                 0x20000000   Data           1  st7735.o(.data)
+    RowStart                                 0x20000001   Data           1  st7735.o(.data)
+    Rotation                                 0x20000002   Data           1  st7735.o(.data)
+    TabColor                                 0x20000003   Data           1  st7735.o(.data)
+    _width                                   0x20000006   Data           2  st7735.o(.data)
+    _height                                  0x20000008   Data           2  st7735.o(.data)
+    .data                                    0x2000002c   Section      696  racingcourse1.o(.data)
+    velocity                                 0x2000002c   Data           1  racingcourse1.o(.data)
+    TrackMode                                0x2000002d   Data           1  racingcourse1.o(.data)
+    playerInput                              0x2000002e   Data           1  racingcourse1.o(.data)
+    CHARACTER_SELECT                         0x2000002f   Data           1  racingcourse1.o(.data)
+    isSonicDone                              0x20000030   Data           1  racingcourse1.o(.data)
+    isEggmanDone                             0x20000031   Data           1  racingcourse1.o(.data)
+    SonicFinAnimation                        0x20000032   Data           1  racingcourse1.o(.data)
+    titleCard                                0x20000033   Data           1  racingcourse1.o(.data)
+    youWin                                   0x20000034   Data           1  racingcourse1.o(.data)
+    drawResults                              0x20000035   Data           1  racingcourse1.o(.data)
+    toggleable                               0x20000036   Data           1  racingcourse1.o(.data)
+    progress                                 0x20000038   Data           4  racingcourse1.o(.data)
+    time                                     0x2000003c   Data           4  racingcourse1.o(.data)
+    eggman_progress                          0x20000040   Data           4  racingcourse1.o(.data)
+    TurnProgress                             0x20000044   Data           4  racingcourse1.o(.data)
+    countdown                                0x20000048   Data           4  racingcourse1.o(.data)
+    ccountdown                               0x2000004c   Data           4  racingcourse1.o(.data)
+    parallax_X_pos                           0x20000050   Data           4  racingcourse1.o(.data)
+    MapPoints                                0x200001fc   Data         232  racingcourse1.o(.data)
+    .data                                    0x200002e4   Section        4  timer0a.o(.data)
+    .data                                    0x200002e8   Section        1  driftmain.o(.data)
+    GAMEMODE                                 0x200002e8   Data           1  driftmain.o(.data)
+    .data                                    0x200002e9   Section        1  graphics.o(.data)
+    Graphics_BufferWrite                     0x200002e9   Data           1  graphics.o(.data)
+    .data                                    0x200002ec   Section       48  texas.o(.data)
+    .data                                    0x2000031c   Section        2  menu1.o(.data)
+    countdown                                0x2000031c   Data           1  menu1.o(.data)
+    whichImage                               0x2000031d   Data           1  menu1.o(.data)
+    .data                                    0x2000031e   Section        2  menu2.o(.data)
+    counter                                  0x2000031e   Data           1  menu2.o(.data)
+    r_index                                  0x2000031f   Data           1  menu2.o(.data)
+    .data                                    0x20000320   Section      770  racingcourse2.o(.data)
+    velocity                                 0x20000320   Data           1  racingcourse2.o(.data)
+    TrackMode                                0x20000321   Data           1  racingcourse2.o(.data)
+    playerInput                              0x20000322   Data           1  racingcourse2.o(.data)
+    CHARACTER_SELECT                         0x20000323   Data           1  racingcourse2.o(.data)
+    isSonicDone                              0x20000324   Data           1  racingcourse2.o(.data)
+    isEggmanDone                             0x20000325   Data           1  racingcourse2.o(.data)
+    SonicFinAnimation                        0x20000326   Data           1  racingcourse2.o(.data)
+    titleCard                                0x20000327   Data           1  racingcourse2.o(.data)
+    youWin                                   0x20000328   Data           1  racingcourse2.o(.data)
+    drawResults                              0x20000329   Data           1  racingcourse2.o(.data)
+    toggleable                               0x2000032a   Data           1  racingcourse2.o(.data)
+    progress                                 0x2000032c   Data           4  racingcourse2.o(.data)
+    time                                     0x20000330   Data           4  racingcourse2.o(.data)
+    eggman_progress                          0x20000334   Data           4  racingcourse2.o(.data)
+    TurnProgress                             0x20000338   Data           4  racingcourse2.o(.data)
+    countdown                                0x2000033c   Data           4  racingcourse2.o(.data)
+    ccountdown                               0x20000340   Data           4  racingcourse2.o(.data)
+    parallax_X_pos                           0x20000344   Data           4  racingcourse2.o(.data)
+    MapPoints                                0x200004f0   Data         306  racingcourse2.o(.data)
+    .bss                                     0x20000624   Section    20480  graphics.o(.bss)
+    Graphics_Buffer                          0x20000624   Data       10240  graphics.o(.bss)
+    Graphics_Palette                         0x20002e24   Data       10240  graphics.o(.bss)
+    .bss                                     0x20005628   Section       56  texas.o(.bss)
+    STACK                                    0x20005660   Section     1024  startup.o(STACK)
+    StackMem                                 0x20005660   Data           0  startup.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __ARM_use_no_argv                        0x00000000   Number         0  driftmain.o ABSOLUTE
+    __Vectors                                0x00000000   Data           0  startup.o(RESET)
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _microlib_exit                            - Undefined Weak Reference
+    Reset_Handler                            0x0000026d   Thumb Code     0  startup.o(RESET)
+    NMI_Handler                              0x00000271   Thumb Code     2  startup.o(RESET)
+    HardFault_Handler                        0x00000273   Thumb Code     2  startup.o(RESET)
+    MemManage_Handler                        0x00000275   Thumb Code     2  startup.o(RESET)
+    BusFault_Handler                         0x00000277   Thumb Code     2  startup.o(RESET)
+    UsageFault_Handler                       0x00000279   Thumb Code     2  startup.o(RESET)
+    SVC_Handler                              0x0000027b   Thumb Code     2  startup.o(RESET)
+    DebugMon_Handler                         0x0000027d   Thumb Code     2  startup.o(RESET)
+    PendSV_Handler                           0x0000027f   Thumb Code     2  startup.o(RESET)
+    SysTick_Handler                          0x00000281   Thumb Code     2  startup.o(RESET)
+    ADC0Seq0_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC0Seq1_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC0Seq2_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC0Seq3_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq0_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq1_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq2_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq3_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    CAN0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    CAN1_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    CAN2_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    Comp0_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    Comp1_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    Comp2_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    Ethernet_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ExtBus_Handler                           0x00000283   Thumb Code     0  startup.o(RESET)
+    FPU_Handler                              0x00000283   Thumb Code     0  startup.o(RESET)
+    Fan0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    FlashCtl_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortA_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortB_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortC_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortD_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortE_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortF_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortG_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortH_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortJ_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortK_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortL_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortM_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortN_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP1_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP2_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP3_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP4_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP5_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP6_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP7_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ1_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ2_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ3_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ4_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ5_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ6_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ7_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortR_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortS_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    Hibernate_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C1_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C2_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C3_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C4_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C5_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2S0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    LPC0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    PECI0_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Fault_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator0_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator1_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator2_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator3_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Fault_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator0_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator1_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator2_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator3_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    Quadrature0_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    Quadrature1_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    Quadrature2_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI1_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI2_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI3_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SysCtl_Handler                           0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer0B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer1A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer1B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer2A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer2B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer3A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer3B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer4B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer5B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    UART0_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART2_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART3_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART4_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART5_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART6_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART7_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    USB0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    WDT_Handler                              0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer0A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer0B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer1A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer1B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer2A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer2B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer3A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer3B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer4A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer4B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer5A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer5B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    uDMA_Error                               0x00000283   Thumb Code     0  startup.o(RESET)
+    uDMA_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    __main                                   0x00000285   Thumb Code     0  entry.o(.ARM.Collect$$$$00000000)
+    _main_stk                                0x00000285   Thumb Code     0  entry2.o(.ARM.Collect$$$$00000001)
+    _main_scatterload                        0x00000289   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    __main_after_scatterload                 0x0000028d   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    _main_clock                              0x0000028d   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
+    _main_cpp_init                           0x0000028d   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
+    _main_init                               0x0000028d   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
+    __rt_final_cpp                           0x00000295   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000D)
+    __rt_final_exit                          0x00000295   Thumb Code     0  entry11a.o(.ARM.Collect$$$$0000000F)
+    DisableInterrupts                        0x00000299   Thumb Code     0  startup.o(.text)
+    EnableInterrupts                         0x0000029d   Thumb Code     0  startup.o(.text)
+    StartCritical                            0x000002a1   Thumb Code     0  startup.o(.text)
+    EndCritical                              0x000002a9   Thumb Code     0  startup.o(.text)
+    WaitForInterrupt                         0x000002af   Thumb Code     0  startup.o(.text)
+    writecommand                             0x000002b5   Thumb Code     0  lcd.o(.text)
+    writedata                                0x000002db   Thumb Code     0  lcd.o(.text)
+    ADC1_Init                                0x00000301   Thumb Code   170  texas.o(.text)
+    SetCode                                  0x000003ab   Thumb Code    20  texas.o(.text)
+    UART0_Init                               0x000003bf   Thumb Code   162  texas.o(.text)
+    SetCourse                                0x00000461   Thumb Code    22  texas.o(.text)
+    PLL_Init                                 0x00000477   Thumb Code   118  texas.o(.text)
+    TExaS_Init                               0x000004ed   Thumb Code   282  texas.o(.text)
+    StopTimer4                               0x00000607   Thumb Code    16  texas.o(.text)
+    StartTimer4                              0x00000617   Thumb Code    24  texas.o(.text)
+    Timer4A_Handler                          0x0000062f   Thumb Code    20  texas.o(.text)
+    ADC1_In                                  0x00000643   Thumb Code     6  texas.o(.text)
+    Timer5A_Handler                          0x00000649   Thumb Code    34  texas.o(.text)
+    TExaS_Stop                               0x0000066b   Thumb Code    18  texas.o(.text)
+    copy                                     0x0000067d   Thumb Code    16  texas.o(.text)
+    SetMode                                  0x0000068d   Thumb Code    22  texas.o(.text)
+    UART0_InChar                             0x000006a3   Thumb Code    20  texas.o(.text)
+    UART0_InCharNonBlocking                  0x000006b7   Thumb Code    22  texas.o(.text)
+    UART0_OutChar                            0x000006cd   Thumb Code   200  texas.o(.text)
+    UART0_OutCharNonBlock                    0x00000795   Thumb Code     6  texas.o(.text)
+    __scatterload                            0x000007a1   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x000007a1   Thumb Code     0  init.o(.text)
+    __decompress                             0x000007c5   Thumb Code     0  __dclz77c.o(.text)
+    __decompress2                            0x000007c5   Thumb Code    96  __dclz77c.o(.text)
+    ADC_In                                   0x00000825   Thumb Code    26  adc.o(i.ADC_In)
+    ADC_Init                                 0x00000845   Thumb Code   158  adc.o(i.ADC_Init)
+    ChangeState                              0x00000909   Thumb Code    38  driftmain.o(i.ChangeState)
+    Delay1ms                                 0x00000935   Thumb Code    52  st7735.o(i.Delay1ms)
+    Graphics_DrawBitmap                      0x00000969   Thumb Code    84  graphics.o(i.Graphics_DrawBitmap)
+    Graphics_DrawPixel                       0x000009bd   Thumb Code   232  graphics.o(i.Graphics_DrawPixel)
+    Graphics_FillRect                        0x00000ab1   Thumb Code    78  graphics.o(i.Graphics_FillRect)
+    Graphics_Init                            0x00000b01   Thumb Code    28  graphics.o(i.Graphics_Init)
+    Graphics_OutScreen                       0x00000b25   Thumb Code   128  graphics.o(i.Graphics_OutScreen)
+    IO_GetButton1                            0x00000bad   Thumb Code    12  io.o(i.IO_GetButton1)
+    IO_GetButton2                            0x00000bbd   Thumb Code    12  io.o(i.IO_GetButton2)
+    IO_HeartBeat                             0x00000bcd   Thumb Code    12  io.o(i.IO_HeartBeat)
+    IO_HeartBeat2                            0x00000bdd   Thumb Code    12  io.o(i.IO_HeartBeat2)
+    IO_Init                                  0x00000bed   Thumb Code   118  io.o(i.IO_Init)
+    IO_Touch                                 0x00000c7d   Thumb Code    28  io.o(i.IO_Touch)
+    ST7735_DrawCharS                         0x00000c9d   Thumb Code   290  st7735.o(i.ST7735_DrawCharS)
+    ST7735_DrawPixel2                        0x00000dc9   Thumb Code    20  st7735.o(i.ST7735_DrawPixel2)
+    ST7735_FillRect                          0x00000ddd   Thumb Code   128  st7735.o(i.ST7735_FillRect)
+    ST7735_FillScreen                        0x00000e61   Thumb Code    24  st7735.o(i.ST7735_FillScreen)
+    ST7735_InitR                             0x00000e7d   Thumb Code   102  st7735.o(i.ST7735_InitR)
+    ST7735_OutChar                           0x00000ef9   Thumb Code   228  st7735.o(i.ST7735_OutChar)
+    ST7735_OutString                         0x00000ff9   Thumb Code    30  st7735.o(i.ST7735_OutString)
+    ST7735_SetCursor                         0x00001019   Thumb Code    16  st7735.o(i.ST7735_SetCursor)
+    ST7735_SetScreen                         0x0000102d   Thumb Code    12  st7735.o(i.ST7735_SetScreen)
+    SendSound                                0x00001039   Thumb Code    56  driftmain.o(i.SendSound)
+    Timer0A_Handler                          0x00001071   Thumb Code    12  timer0a.o(i.Timer0A_Handler)
+    Timer0A_Init                             0x00001085   Thumb Code    90  timer0a.o(i.Timer0A_Init)
+    UART1_Handler                            0x000010f1   Thumb Code     2  uart.o(i.UART1_Handler)
+    UART1_Init                               0x000010f5   Thumb Code   128  uart.o(i.UART1_Init)
+    UART1_OutChar                            0x00001195   Thumb Code     2  uart.o(i.UART1_OutChar)
+    UpdateGame                               0x00001199   Thumb Code   176  driftmain.o(i.UpdateGame)
+    __scatterload_copy                       0x00001285   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00001293   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00001295   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    drawCourse1                              0x00001489   Thumb Code  2214  racingcourse1.o(i.drawCourse1)
+    drawCourse2                              0x00001d69   Thumb Code  2202  racingcourse2.o(i.drawCourse2)
+    initCourse1                              0x0000263d   Thumb Code    58  racingcourse1.o(i.initCourse1)
+    initCourse2                              0x0000267d   Thumb Code    58  racingcourse2.o(i.initCourse2)
+    main                                     0x000026bd   Thumb Code    40  driftmain.o(i.main)
+    menu1Draw                                0x000026ed   Thumb Code    46  menu1.o(i.menu1Draw)
+    menu1Init                                0x00002729   Thumb Code    10  menu1.o(i.menu1Init)
+    menu1Update                              0x00002739   Thumb Code    72  menu1.o(i.menu1Update)
+    menu2Draw                                0x00002785   Thumb Code   956  menu2.o(i.menu2Draw)
+    menu2Init                                0x00002b5d   Thumb Code     2  menu2.o(i.menu2Init)
+    menu2Update                              0x00002b61   Thumb Code    86  menu2.o(i.menu2Update)
+    updateCourse1                            0x00002c29   Thumb Code   642  racingcourse1.o(i.updateCourse1)
+    updateCourse2                            0x00002eb9   Thumb Code   720  racingcourse2.o(i.updateCourse2)
+    dBfs                                     0x00003772   Data         512  st7735.o(.constdata)
+    ScoreFont                                0x00003972   Data        1232  racingcourse1.o(.constdata)
+    Ground                                   0x0000d046   Data         212  racingcourse1.o(.constdata)
+    sonic_left                               0x0000d11a   Data        1440  racingcourse1.o(.constdata)
+    sonic_right                              0x0000d6ba   Data        1440  racingcourse1.o(.constdata)
+    sonic_c                                  0x0000dc5a   Data        1440  racingcourse1.o(.constdata)
+    tails_c                                  0x0000e1fa   Data        1440  racingcourse1.o(.constdata)
+    tails_left                               0x0000e79a   Data        1440  racingcourse1.o(.constdata)
+    tails_right                              0x0000ed3a   Data        1440  racingcourse1.o(.constdata)
+    sonic_head                               0x0000f2da   Data         128  racingcourse1.o(.constdata)
+    tails_head                               0x0000f35a   Data         128  racingcourse1.o(.constdata)
+    eggman_head                              0x0000f3da   Data         128  racingcourse1.o(.constdata)
+    eggman_farthest                          0x0000f45a   Data         160  racingcourse1.o(.constdata)
+    eggman_farther                           0x0000f4fa   Data         420  racingcourse1.o(.constdata)
+    eggman_closest                           0x0000f69e   Data        1012  racingcourse1.o(.constdata)
+    sonic_closer                             0x0000fa92   Data         640  racingcourse1.o(.constdata)
+    sonic_farther                            0x0000fd12   Data         420  racingcourse1.o(.constdata)
+    sonic_farthest                           0x0000feb6   Data         160  racingcourse1.o(.constdata)
+    tails_closer                             0x0000ff56   Data         640  racingcourse1.o(.constdata)
+    tails_farther                            0x000101d6   Data         420  racingcourse1.o(.constdata)
+    tails_farthest                           0x0001037a   Data         160  racingcourse1.o(.constdata)
+    greenhill_title                          0x0001041a   Data       16000  racingcourse1.o(.constdata)
+    winner_you                               0x0001429a   Data       11448  racingcourse1.o(.constdata)
+    winner_not_you                           0x00016f52   Data       11448  racingcourse1.o(.constdata)
+    Ground2                                  0x00019c0a   Data         212  racingcourse1.o(.constdata)
+    Course2Map                               0x00019cde   Data       20480  racingcourse1.o(.constdata)
+    scrapbrain_title                         0x0001ecde   Data       16000  racingcourse1.o(.constdata)
+    course2parallax                          0x00022b5e   Data       16900  racingcourse1.o(.constdata)
+    InputPortMsg                             0x00026d62   Data          40  texas.o(.constdata)
+    OutputPortMsg                            0x00026d8a   Data          40  texas.o(.constdata)
+    BlankMsg                                 0x00026db2   Data          40  texas.o(.constdata)
+    InitializedMsg                           0x00026dda   Data          40  texas.o(.constdata)
+    IntroMsg                                 0x00026e02   Data          40  texas.o(.constdata)
+    DoneMsg                                  0x00026e2a   Data          40  texas.o(.constdata)
+    menu1_1                                  0x00026e52   Data       40960  menu1.o(.constdata)
+    menu1_2                                  0x00030e52   Data        9984  menu1.o(.constdata)
+    sonic_r_1                                0x00033552   Data        1536  menu2.o(.constdata)
+    sonic_r_2                                0x00033b52   Data        1536  menu2.o(.constdata)
+    sonic_r_3                                0x00034152   Data        1536  menu2.o(.constdata)
+    char_sel                                 0x00034752   Data        2560  menu2.o(.constdata)
+    tails_r_1                                0x00035152   Data        1536  menu2.o(.constdata)
+    tails_r_2                                0x00035752   Data        1536  menu2.o(.constdata)
+    tails_r_3                                0x00035d52   Data        1536  menu2.o(.constdata)
+    sonic_push_1                             0x00036352   Data        3648  menu2.o(.constdata)
+    tails_push_2                             0x00037192   Data        3648  menu2.o(.constdata)
+    Region$$Table$$Base                      0x00037fd4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00037ff4   Number         0  anon$$obj.o(Region$$Table)
+    StTextColor                              0x20000004   Data           2  st7735.o(.data)
+    StX                                      0x2000000c   Data           4  st7735.o(.data)
+    StY                                      0x20000010   Data           4  st7735.o(.data)
+    lastj                                    0x20000014   Data           4  st7735.o(.data)
+    Messageindex                             0x20000018   Data           4  st7735.o(.data)
+    Ymax                                     0x2000001c   Data           4  st7735.o(.data)
+    Ymin                                     0x20000020   Data           4  st7735.o(.data)
+    X                                        0x20000024   Data           4  st7735.o(.data)
+    Yrange                                   0x20000028   Data           4  st7735.o(.data)
+    RoadObject                               0x20000054   Data         424  racingcourse1.o(.data)
+    PeriodicTask                             0x200002e4   Data           4  timer0a.o(.data)
+    TExaS_Period                             0x200002ec   Data           4  texas.o(.data)
+    TExaS_Ports                              0x200002f0   Data           8  texas.o(.data)
+    TExaS_Meter                              0x200002f8   Data           4  texas.o(.data)
+    ADCnum                                   0x200002fc   Data           4  texas.o(.data)
+    LastMode                                 0x20000300   Data           4  texas.o(.data)
+    bFlag                                    0x20000304   Data           4  texas.o(.data)
+    Count                                    0x20000308   Data           4  texas.o(.data)
+    DelayBetweenTests                        0x2000030c   Data           4  texas.o(.data)
+    TExaS_Test                               0x20000310   Data           4  texas.o(.data)
+    ScopeMode                                0x20000314   Data           4  texas.o(.data)
+    ScopeCount                               0x20000318   Data           4  texas.o(.data)
+    RoadObject2                              0x20000348   Data         424  racingcourse2.o(.data)
+    TExaS                                    0x20005628   Data          56  texas.o(.bss)
+    __initial_sp                             0x20005a60   Data           0  startup.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x0000026d
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00038618, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x000382e0])
+
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x00037ff4, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x00000284   Code   RO            3  * RESET               startup.o
+    0x00000284   0x00000000   Code   RO          665  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000284   0x00000004   Code   RO          668    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00000288   0x00000004   Code   RO          671    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x0000028c   0x00000000   Code   RO          673    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x0000028c   0x00000000   Code   RO          675    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x0000028c   0x00000008   Code   RO          676    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000294   0x00000000   Code   RO          678    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x00000294   0x00000000   Code   RO          680    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x00000294   0x00000004   Code   RO          669    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000298   0x0000001c   Code   RO            4    .text               startup.o
+    0x000002b4   0x0000004c   Code   RO          281    .text               lcd.o
+    0x00000300   0x000004a0   Code   RO          498    .text               texas.o
+    0x000007a0   0x00000024   Code   RO          682    .text               mc_w.l(init.o)
+    0x000007c4   0x00000060   Code   RO          692    .text               mc_w.l(__dclz77c.o)
+    0x00000824   0x00000020   Code   RO          438    i.ADC_In            adc.o
+    0x00000844   0x000000c4   Code   RO          439    i.ADC_Init          adc.o
+    0x00000908   0x0000002c   Code   RO          400    i.ChangeState       driftmain.o
+    0x00000934   0x00000034   Code   RO           12    i.Delay1ms          st7735.o
+    0x00000968   0x00000054   Code   RO          456    i.Graphics_DrawBitmap  graphics.o
+    0x000009bc   0x000000f4   Code   RO          457    i.Graphics_DrawPixel  graphics.o
+    0x00000ab0   0x0000004e   Code   RO          458    i.Graphics_FillRect  graphics.o
+    0x00000afe   0x00000002   PAD
+    0x00000b00   0x00000024   Code   RO          459    i.Graphics_Init     graphics.o
+    0x00000b24   0x00000088   Code   RO          460    i.Graphics_OutScreen  graphics.o
+    0x00000bac   0x00000010   Code   RO          287    i.IO_GetButton1     io.o
+    0x00000bbc   0x00000010   Code   RO          288    i.IO_GetButton2     io.o
+    0x00000bcc   0x00000010   Code   RO          289    i.IO_HeartBeat      io.o
+    0x00000bdc   0x00000010   Code   RO          290    i.IO_HeartBeat2     io.o
+    0x00000bec   0x00000090   Code   RO          291    i.IO_Init           io.o
+    0x00000c7c   0x00000020   Code   RO          292    i.IO_Touch          io.o
+    0x00000c9c   0x0000012c   Code   RO           21    i.ST7735_DrawCharS  st7735.o
+    0x00000dc8   0x00000014   Code   RO           25    i.ST7735_DrawPixel2  st7735.o
+    0x00000ddc   0x00000084   Code   RO           27    i.ST7735_FillRect   st7735.o
+    0x00000e60   0x0000001c   Code   RO           28    i.ST7735_FillScreen  st7735.o
+    0x00000e7c   0x0000007c   Code   RO           30    i.ST7735_InitR      st7735.o
+    0x00000ef8   0x00000100   Code   RO           32    i.ST7735_OutChar    st7735.o
+    0x00000ff8   0x0000001e   Code   RO           33    i.ST7735_OutString  st7735.o
+    0x00001016   0x00000002   PAD
+    0x00001018   0x00000014   Code   RO           43    i.ST7735_SetCursor  st7735.o
+    0x0000102c   0x0000000c   Code   RO           45    i.ST7735_SetScreen  st7735.o
+    0x00001038   0x00000038   Code   RO          401    i.SendSound         driftmain.o
+    0x00001070   0x00000014   Code   RO          374    i.Timer0A_Handler   timer0a.o
+    0x00001084   0x0000006c   Code   RO          375    i.Timer0A_Init      timer0a.o
+    0x000010f0   0x00000002   Code   RO          628    i.UART1_Handler     uart.o
+    0x000010f2   0x00000002   PAD
+    0x000010f4   0x000000a0   Code   RO          630    i.UART1_Init        uart.o
+    0x00001194   0x00000002   Code   RO          631    i.UART1_OutChar     uart.o
+    0x00001196   0x00000002   PAD
+    0x00001198   0x000000ec   Code   RO          402    i.UpdateGame        driftmain.o
+    0x00001284   0x0000000e   Code   RO          686    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00001292   0x00000002   Code   RO          687    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00001294   0x0000000e   Code   RO          688    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x000012a2   0x00000002   PAD
+    0x000012a4   0x0000008e   Code   RO           48    i.commandList       st7735.o
+    0x00001332   0x00000002   PAD
+    0x00001334   0x00000154   Code   RO           49    i.commonInit        st7735.o
+    0x00001488   0x000008e0   Code   RO          329    i.drawCourse1       racingcourse1.o
+    0x00001d68   0x000008d4   Code   RO          571    i.drawCourse2       racingcourse2.o
+    0x0000263c   0x00000040   Code   RO          330    i.initCourse1       racingcourse1.o
+    0x0000267c   0x00000040   Code   RO          572    i.initCourse2       racingcourse2.o
+    0x000026bc   0x00000030   Code   RO          403    i.main              driftmain.o
+    0x000026ec   0x0000003c   Code   RO          515    i.menu1Draw         menu1.o
+    0x00002728   0x00000010   Code   RO          516    i.menu1Init         menu1.o
+    0x00002738   0x0000004c   Code   RO          517    i.menu1Update       menu1.o
+    0x00002784   0x000003d8   Code   RO          543    i.menu2Draw         menu2.o
+    0x00002b5c   0x00000002   Code   RO          544    i.menu2Init         menu2.o
+    0x00002b5e   0x00000002   PAD
+    0x00002b60   0x00000060   Code   RO          545    i.menu2Update       menu2.o
+    0x00002bc0   0x00000068   Code   RO           54    i.setAddrWindow     st7735.o
+    0x00002c28   0x00000290   Code   RO          331    i.updateCourse1     racingcourse1.o
+    0x00002eb8   0x000002d8   Code   RO          573    i.updateCourse2     racingcourse2.o
+    0x00003190   0x000007e2   Data   RO           56    .constdata          st7735.o
+    0x00003972   0x00016298   Data   RO          332    .constdata          racingcourse1.o
+    0x00019c0a   0x000000d4   Data   RO          334    .constdata          racingcourse1.o
+    0x00019cde   0x00005000   Data   RO          335    .constdata          racingcourse1.o
+    0x0001ecde   0x00003e80   Data   RO          336    .constdata          racingcourse1.o
+    0x00022b5e   0x00004204   Data   RO          337    .constdata          racingcourse1.o
+    0x00026d62   0x000000f0   Data   RO          500    .constdata          texas.o
+    0x00026e52   0x0000c700   Data   RO          518    .constdata          menu1.o
+    0x00033552   0x00004a80   Data   RO          546    .constdata          menu2.o
+    0x00037fd2   0x00000002   PAD
+    0x00037fd4   0x00000020   Data   RO          684    Region$$Table       anon$$obj.o
+
+
+    Execution Region ER_RW (Base: 0x20000000, Size: 0x00000624, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x000002ec])
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x0000002c   Data   RW           57    .data               st7735.o
+    0x2000002c   0x000002b8   Data   RW          338    .data               racingcourse1.o
+    0x200002e4   0x00000004   Data   RW          376    .data               timer0a.o
+    0x200002e8   0x00000001   Data   RW          404    .data               driftmain.o
+    0x200002e9   0x00000001   Data   RW          462    .data               graphics.o
+    0x200002ea   0x00000002   PAD
+    0x200002ec   0x00000030   Data   RW          501    .data               texas.o
+    0x2000031c   0x00000002   Data   RW          519    .data               menu1.o
+    0x2000031e   0x00000002   Data   RW          547    .data               menu2.o
+    0x20000320   0x00000302   Data   RW          574    .data               racingcourse2.o
+
+
+    Execution Region ER_ZI (Base: 0x20000624, Size: 0x0000543c, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000624   0x00005000   Zero   RW          461    .bss                graphics.o
+    0x20005624   0x00000004   PAD
+    0x20005628   0x00000038   Zero   RW          499    .bss                texas.o
+    0x20005660   0x00000400   Zero   RW            1    STACK               startup.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       228         44          0          0          0       1444   adc.o
+       384         84          0          1          0       3374   driftmain.o
+       578         28          0          1      20480       4864   graphics.o
+       240         46          0          0          0       3404   io.o
+        76         12          0          0          0        316   lcd.o
+       152         24      50944          2          0       2376   menu1.o
+      1082         38      19072          2          0       3263   menu2.o
+      2992        158     144368        696          0       7940   racingcourse1.o
+      3052        152          0        770          0       6018   racingcourse2.o
+      1560        116       2018         44          0      17813   st7735.o
+       672        622          0          0       1024       1124   startup.o
+      1184        188        240         48         56      14668   texas.o
+       128         26          0          4          0       1752   timer0a.o
+       164         32          0          0          0       1477   uart.o
+
+    ----------------------------------------------------------------------
+     12504       1570     216676       1572      21564      69833   Object Totals
+         0          0         32          0          0          0   (incl. Generated)
+        12          0          2          4          4          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+        96          0          0          0          0          0   __dclz77c.o
+         0          0          0          0          0          0   entry.o
+         0          0          0          0          0          0   entry10a.o
+         0          0          0          0          0          0   entry11a.o
+         8          4          0          0          0          0   entry2.o
+         4          0          0          0          0          0   entry5.o
+         0          0          0          0          0          0   entry7b.o
+         0          0          0          0          0          0   entry8b.o
+         8          4          0          0          0          0   entry9a.o
+        30          0          0          0          0          0   handlers.o
+        36          8          0          0          0         68   init.o
+
+    ----------------------------------------------------------------------
+       184         16          0          0          0         68   Library Totals
+         2          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+       182         16          0          0          0         68   mc_w.l
+
+    ----------------------------------------------------------------------
+       184         16          0          0          0         68   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+     12688       1586     216676       1572      21564      67613   Grand Totals
+     12688       1586     216676        748      21564      67613   ELF Image Totals (compressed)
+     12688       1586     216676        748          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)               229364 ( 223.99kB)
+    Total RW  Size (RW Data + ZI Data)             23136 (  22.59kB)
+    Total ROM Size (Code + RO Data + RW Data)     230112 ( 224.72kB)
+
+==============================================================================
+

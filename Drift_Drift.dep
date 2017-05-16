@@ -1,0 +1,74 @@
+Dependencies for Project 'Drift', Target 'Drift': (DO NOT MODIFY !)
+F (.\startup.s)(0x58D45F25)(--cpu Cortex-M4 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\ST7735.c)(0x58FF4844)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\st7735.o --omf_browse .\st7735.crf --depend .\st7735.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C88A34)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (ST7735.h)(0x58FF48D4)
+I (tm4c123gh6pm.h)(0x58D45F25)
+F (.\LCD.s)(0x58D48184)(--cpu Cortex-M4 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\lcd.lst --xref -o .\lcd.o --depend .\lcd.d)
+F (.\Print.s)(0x58D585D0)(--cpu Cortex-M4 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\print.lst --xref -o .\print.o --depend .\print.d)
+F (.\IO.c)(0x59013A63)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\io.o --omf_browse .\io.crf --depend .\io.d)
+I (tm4c123gh6pm.h)(0x58D45F25)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+F (.\RacingCourse1.c)(0x590C7C6E)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\racingcourse1.o --omf_browse .\racingcourse1.crf --depend .\racingcourse1.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C88A34)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (Graphics.h)(0x58FE6041)
+I (tm4c123gh6pm.h)(0x58D45F25)
+I (IO.h)(0x59013ABA)
+I (Print.h)(0x58D49136)
+I (TextDraw.h)(0x58FF6AAF)
+I (Sprites.h)(0x5901EB40)
+F (.\Timer0A.c)(0x58D13818)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\timer0a.o --omf_browse .\timer0a.crf --depend .\timer0a.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (tm4c123gh6pm.h)(0x58D45F25)
+F (.\DriftMain.c)(0x5904D9D3)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\driftmain.o --omf_browse .\driftmain.crf --depend .\driftmain.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C88A34)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (ST7735.h)(0x58FF48D4)
+I (tm4c123gh6pm.h)(0x58D45F25)
+I (TExaS.h)(0x58F2588E)
+I (IO.h)(0x59013ABA)
+I (Print.h)(0x58D49136)
+I (Graphics.h)(0x58FE6041)
+I (UART.h)(0x5904C3CF)
+F (.\ADC.c)(0x58EC5010)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (tm4c123gh6pm.h)(0x58D45F25)
+F (.\Graphics.c)(0x59013BBD)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\graphics.o --omf_browse .\graphics.crf --depend .\graphics.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (tm4c123gh6pm.h)(0x58D45F25)
+I (ST7735.h)(0x58FF48D4)
+I (IO.h)(0x59013ABA)
+F (.\TextDraw.c)(0x58FF5F12)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\textdraw.o --omf_browse .\textdraw.crf --depend .\textdraw.d)
+F (.\TExaS.h)(0x58F2588E)()
+F (.\texas.o)(0x58F2588E)()
+F (.\Menu1.c)(0x5904D939)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\menu1.o --omf_browse .\menu1.crf --depend .\menu1.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (Graphics.h)(0x58FE6041)
+I (tm4c123gh6pm.h)(0x58D45F25)
+I (IO.h)(0x59013ABA)
+I (Print.h)(0x58D49136)
+F (.\Menu2.c)(0x5904D942)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\menu2.o --omf_browse .\menu2.crf --depend .\menu2.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (Graphics.h)(0x58FE6041)
+I (tm4c123gh6pm.h)(0x58D45F25)
+I (IO.h)(0x59013ABA)
+I (Print.h)(0x58D49136)
+F (.\RacingCourse2.c)(0x590C7C7F)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\racingcourse2.o --omf_browse .\racingcourse2.crf --depend .\racingcourse2.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C88A34)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (Graphics.h)(0x58FE6041)
+I (tm4c123gh6pm.h)(0x58D45F25)
+I (IO.h)(0x59013ABA)
+I (Print.h)(0x58D49136)
+I (Sprites2.h)(0x5901ED9B)
+F (.\FiFo.c)(0x58F2ABE8)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\fifo.o --omf_browse .\fifo.crf --depend .\fifo.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+F (.\UART.c)(0x591B3E9B)(-c --cpu Cortex-M4 -D__MICROLIB -g -W -O3 -Otime --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
+I (FiFo.h)(0x58F2588E)
+I (UART.h)(0x5904C3CF)
+I (tm4c123gh6pm.h)(0x58D45F25)
+F (.\FiFo.h)(0x58F2588E)()
+F (.\UART.h)(0x5904C3CF)()
